@@ -2,12 +2,15 @@
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Ticket;
-
-use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
+
+use MoonShine\Fields\Text;
+use MoonShine\Fields\Number;
+use MoonShine\Resources\Resource;
 use MoonShine\Actions\FiltersAction;
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Fields\Url;
 
 class TicketResource extends Resource
 {
@@ -19,6 +22,14 @@ class TicketResource extends Resource
 	{
 		return [
 		    ID::make()->sortable(),
+            Url::make('Poster', 'poster')
+            ->hideOnIndex()
+            ->required(),
+            Text::make('Title', 'title')
+            ->required(),
+            Text::make('Subtitle', 'subtitle'),
+            Number::make('Price', 'price')
+            ->required(),
         ];
 	}
 

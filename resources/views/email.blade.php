@@ -1,12 +1,12 @@
 @component('mail::message')
-<h1 style="text-align: center">Ваша электронная бронь!</h1>
+<h1 style="text-align: center">Ваша електронна бронь до парку "РА"!</h1>
 
 <h2 style="text-align: center; margin-bottom: 32px;">
-Покажите его при входе для оплаты.
+    Покажіть при вході для оплати.
 </h2>
 
 @component('mail::panel')
-{{$hash}}
+Ваш код: {{$hash}}
 @endcomponent
 
 @endcomponent

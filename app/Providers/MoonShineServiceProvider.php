@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
-use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
+use MoonShine\Menu\MenuGroup;
+use Illuminate\Support\ServiceProvider;
+use App\MoonShine\Resources\OrderResource;
+use App\MoonShine\Resources\TicketResource;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
 
@@ -15,16 +17,17 @@ class MoonShineServiceProvider extends ServiceProvider
     {
         app(MoonShine::class)->menu([
             MenuGroup::make('moonshine::ui.resource.system', [
-                MenuItem::make('moonshine::ui.resource.admins_title', new MoonShineUserResource())
+                MenuItem::make('Admins', new MoonShineUserResource())
                     ->translatable()
-                    ->icon('users'),
-                MenuItem::make('moonshine::ui.resource.role_title', new MoonShineUserRoleResource())
+                    ->icon('heroicons.user-circle'),
+                MenuItem::make('Roles', new MoonShineUserRoleResource())
                     ->translatable()
-                    ->icon('bookmark'),
-            ])->translatable(),
+                    ->icon('heroicons.shield-exclamation'),
+            ])->translatable()
+            ->icon('heroicons.wrench-screwdriver'),
 
-            MenuItem::make('Documentation', 'https://laravel.com')
-                ->badge(fn() => 'Check'),
+            MenuItem::make('Order', new OrderResource(), 'heroicons.shopping-cart'),
+            MenuItem::make('Ticket', new TicketResource(), 'heroicons.ticket'),
         ]);
     }
 }

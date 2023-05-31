@@ -11,7 +11,8 @@ return new class extends Migration {
             $table->id();
             $table->string('poster');
             $table->string('title');
-            $table->string('subtitle');
+            $table->string('subtitle')
+            ->nullable();
             $table->integer('price');
             $table->timestamps();
         });

@@ -2,12 +2,14 @@
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
-
-use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
+
+use MoonShine\Fields\Text;
+use MoonShine\Fields\BelongsTo;
+use MoonShine\Resources\Resource;
 use MoonShine\Actions\FiltersAction;
+use Illuminate\Database\Eloquent\Model;
 
 class OrderResource extends Resource
 {
@@ -19,6 +21,12 @@ class OrderResource extends Resource
 	{
 		return [
 		    ID::make()->sortable(),
+            BelongsTo::make('Ticket', 'ticket_id', fn($item) => $item->id ." | ". $item->title)
+            ->required(),
+            Text::make('Email', 'email')
+            ->required(),
+            Text::make('Hash', 'hash')
+            ->required(),
         ];
 	}
 
